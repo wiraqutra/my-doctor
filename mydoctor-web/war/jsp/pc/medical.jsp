@@ -6,12 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>遠隔問診システムトップページ</title>
+<title>医療関係者用ページ</title>
 </head>
 <body>
-
-
-<div>医療関係者の方は<a href="/medical">こちらから</a></div>
-<div>健康相談をしたい方は<a href="/contact">こちらから</a></div>
+<div></div>
 </body>
 </html>
