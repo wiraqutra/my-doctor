@@ -3,9 +3,19 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/junit-4.7.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/slim3-1.0.9.jar" sourcepath="libsrc/slim3-1.0.9-sources.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/slim3-1.0.11.jar" sourcepath="libsrc/slim3-1.0.9-sources.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-lang-2.6.jar" sourcepath="libsrc/commons-lang-2.6-sources.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jsonic-1.2.5.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/mobylet-charset-1.0.6.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/mobylet-core-1.0.6.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/mobylet-gaeextension-1.0.6.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/mobylet-taglibs-1.0.6.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/oauth-20100527.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/oauth-consumer-20100527.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/oauth-provider-20100527.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/httpclient-4.1.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/httpcore-4.1.jar"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/App Engine (3)"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
