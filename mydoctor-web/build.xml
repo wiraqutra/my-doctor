@@ -31,28 +31,28 @@
         <input message="Input a controller path." addproperty="controllerPath"/>
         <gen-controller srcdir="${srcDir}" testdir="${testDir}" wardir="${warDir}" controllerpath="${controllerPath}"
              useView="true" superclassname="com.appspot.mydoctor.controller.base.PcBaseController"/>
-        <gen-view wardir="${pcJspDir}" controllerPath="${controllerPath}"/>
+        <gen-view wardir="${jspDir}" controllerPath="${controllerPath}"/>
     </target>
 
     <target name="gen-controller-m">
         <input message="Input a controller path." addproperty="controllerPath"/>
         <gen-controller srcdir="${srcDir}" testdir="${testDir}" wardir="${warDir}" controllerpath="${controllerPath}"
              useView="true" superclassname="com.appspot.mydoctor.controller.base.MobileBaseController"/>
-        <gen-view wardir="${mobileJspDir}" controllerPath="${controllerPath}"/>
+        <gen-view wardir="${jspDir}" controllerPath="${controllerPath}"/>
     </target>
 
     <target name="gen-controller-sp">
         <input message="Input a controller path." addproperty="controllerPath"/>
         <gen-controller srcdir="${srcDir}" testdir="${testDir}" wardir="${warDir}" controllerpath="${controllerPath}"
              useView="true" superclassname="com.appspot.mydoctor.controller.base.SmartPhoneBaseController"/>
-        <gen-view wardir="${smartPhoneJspDir}" controllerPath="${controllerPath}"/>
+        <gen-view wardir="${jspDir}" controllerPath="${controllerPath}"/>
     </target>
 	
     <target name="gen-controller-ds">
         <input message="Input a controller path." addproperty="controllerPath"/>
         <gen-controller srcdir="${srcDir}" testdir="${testDir}" wardir="${warDir}" controllerpath="${controllerPath}"
              useView="true" superclassname="com.appspot.mydoctor.controller.base.DsBaseController"/>
-        <gen-view wardir="${dsJspDir}" controllerPath="${controllerPath}"/>
+        <gen-view wardir="${jspDir}" controllerPath="${controllerPath}"/>
     </target>
 
     <target name="gen-controller-without-view">
@@ -98,4 +98,5 @@
             </zipfileset>
         </zip>
     </target>
+	
 </project>
