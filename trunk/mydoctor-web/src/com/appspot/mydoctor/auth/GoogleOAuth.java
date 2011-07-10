@@ -1,36 +1,35 @@
 package com.appspot.mydoctor.auth;
 
+import java.io.IOException;
 import java.util.logging.Level;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
-
-import com.google.appengine.api.oauth.OAuthRequestException;
-import com.google.appengine.api.oauth.OAuthService;
-import com.google.appengine.api.oauth.OAuthServiceFactory;
-import com.google.appengine.api.users.User;
+import com.appspot.mydoctor.enumeration.TerminalTypeEnum;
+import com.appspot.mydoctor.model.base.AccountModel;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 
 public class GoogleOAuth extends BaseAuth {
 
-    @Override
-    public User getUser() {
-        return user;
-    }
+	@Override
+	public AccountModel getUser() {
+		return user;
+	}
 
-    @Override
-    public boolean auth(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            OAuthService oauth = OAuthServiceFactory.getOAuthService();
-            user = oauth.getCurrentUser();
-            if (user != null && StringUtils.isNotBlank(user.getEmail())) {
-                return true;
-            }
-        } catch (OAuthRequestException e) {
-            logger.log(Level.SEVERE, e.getMessage(), e);
-        }
-        return false;
-    }
-
+	@Override
+	public boolean auth(HttpServletRequest request, HttpServletResponse response, TerminalTypeEnum terminalType) {
+		UserService userService = UserServiceFactory.getUserService();
+		if (userService.isUserLoggedIn()) {
+			return true;
+		} else {
+			try {
+				response.sendRedirect(userService.createLoginURL(request.getRequestURI()));
+			} catch (IOException e) {
+				logger.log(Level.SEVERE, "auth error", e);
+			}
+		}
+		return false;
+	}
 }
