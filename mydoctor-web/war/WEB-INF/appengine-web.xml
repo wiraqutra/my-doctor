@@ -12,7 +12,19 @@
         <property name="slim3.uploadSizeMax" value="1000000"/>
         <property name="slim3.uploadFileSizeMax" value="100000"/>
         -->
+        <!-- 
 	    <property name="java.util.logging.config.file" value="WEB-INF/classes/logging.properties"/>
+	    -->
+	    <property name="org.apache.commons.logging.Log" value="org.apache.commons.logging.impl.Log4JLogger"/>
+	    
 	</system-properties>
-	<sessions-enabled>false</sessions-enabled>
+	<sessions-enabled>true</sessions-enabled>
+	<ssl-enabled>true</ssl-enabled>
+	<static-files>
+		<include path="/**.css" />
+		<include path="/**.js" />
+		<include path="/**.png" />
+		<include path="/**.jpg" />
+		<include path="/**.gif" />
+	</static-files> 	
 </appengine-web-app>

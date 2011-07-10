@@ -1,13 +1,13 @@
-package com.appspot.mydoctor.controller;
+package com.appspot.mydoctor.controller.pc;
 
 import org.slim3.controller.Navigation;
 
 import com.appspot.mydoctor.controller.base.PcLoginBaseController;
 
-public class MedicalController extends PcLoginBaseController {
+public class ProfileController extends PcLoginBaseController {
 
-	@Override
 	protected Navigation execute() throws Exception {
-		return forward("medical.jsp");
+
+		return forward("profile.jsp");
 	}
 }

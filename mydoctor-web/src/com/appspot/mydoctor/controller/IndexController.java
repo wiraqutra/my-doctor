@@ -6,8 +6,8 @@ import com.appspot.mydoctor.controller.base.PcBaseController;
 
 public class IndexController extends PcBaseController {
 
-    @Override
-    public Navigation run() throws Exception {
-        return forward("index.jsp");
-    }
+	@Override
+	protected Navigation run() throws Exception {
+		return forward("index.jsp");
+	}
 }
