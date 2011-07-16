@@ -1,9 +1,6 @@
 package com.appspot.mydoctor.auth;
 
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,11 +14,14 @@ import twitter4j.TwitterFactory;
 import twitter4j.auth.RequestToken;
 import twitter4j.conf.ConfigurationBuilder;
 
+import com.appspot.mydoctor.constant.MydoctorConstant;
 import com.appspot.mydoctor.enumeration.TerminalTypeEnum;
+import com.appspot.mydoctor.exception.TimeoutException;
 import com.appspot.mydoctor.model.TwitterAuthSessionModel;
 import com.appspot.mydoctor.model.base.AccountModel;
+import com.appspot.mydoctor.util.DateUtil;
 import com.appspot.mydoctor.util.PropertiesUtil;
-import com.google.appengine.api.datastore.Key;
+import com.appspot.mydoctor.util.UniqueEntityUtil;
 
 public class TwitterOAuth extends BaseAuth {
 
@@ -38,23 +38,22 @@ public class TwitterOAuth extends BaseAuth {
 		try {
 			String consumerKey = PropertiesUtil.getOauthProperties().getProperty("consumer-key-tw");
 			String consumerSecret = PropertiesUtil.getOauthProperties().getProperty("consumer-secret-tw");
-			System.out.println(consumerKey);
-			System.out.println(consumerSecret);
-			Key key = Datastore.allocateId(TwitterAuthSessionModel.class);
+
 			ConfigurationBuilder confbuilder = new ConfigurationBuilder();
 			confbuilder.setOAuthConsumerKey(consumerKey).setOAuthConsumerSecret(consumerSecret);
 
 			Twitter twitter = new TwitterFactory(confbuilder.build()).getInstance();
-			RequestToken requestToken = twitter.getOAuthRequestToken(getCallbackURL(request, key));
+
+			String tempSessionId = UniqueEntityUtil.getSessionKey(TwitterAuthSessionModel.class.getSimpleName(), TwitterAuthSessionModel.SESSION_KEY_LENGTH);
+			RequestToken requestToken = twitter.getOAuthRequestToken(getCallbackURL(request, tempSessionId));
 
 			TwitterAuthSessionModel model = new TwitterAuthSessionModel();
-			model.setKey(key);
 			model.setTwitter(twitter);
 			model.setRequestToken(requestToken);
 			model.setTerminalType(terminalType);
-			Calendar cal = Calendar.getInstance(Locale.JAPAN);
-			cal.add(Calendar.MINUTE, 30);
-			model.setExpireDate(new Date(cal.getTimeInMillis()));
+			model.setExpireDate(DateUtil.getExpireDateMinutes(MydoctorConstant.getSessionExpireMinutes()));
+			model.setSessionKey(tempSessionId);
+
 			Datastore.put(model);
 
 			response.sendRedirect(requestToken.getAuthenticationURL());
@@ -63,12 +62,14 @@ public class TwitterOAuth extends BaseAuth {
 			LOGGER.fatal("twitter auth failed", e);
 		} catch (IOException e) {
 			LOGGER.fatal("twitter auth failed", e);
+		} catch (TimeoutException e) {
+			LOGGER.fatal("generate session id failed", e);
 		}
 		return false;
 	}
 
-	private String getCallbackURL(HttpServletRequest request, Key key) {
-		return request.getRequestURL().toString().replace(request.getRequestURI(), "") + "/pc/callback/tw?key=" + Datastore.keyToString(key);
+	private String getCallbackURL(HttpServletRequest request, String sessionId) {
+		return request.getRequestURL().toString().replace(request.getRequestURI(), "") + "/callback/tw?tid=" + sessionId;
 	}
 
 }
