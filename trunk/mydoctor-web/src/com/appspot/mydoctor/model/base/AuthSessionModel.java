@@ -5,13 +5,10 @@ import java.io.Serializable;
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
 
-import com.appspot.mydoctor.enumeration.OAuthServiceEnum;
-import com.appspot.mydoctor.model.FacebookAccessModel;
-import com.appspot.mydoctor.model.TwitterAccessModel;
 import com.google.appengine.api.datastore.Key;
 
 @Model(schemaVersion = 1)
-public class AccountModel implements Serializable {
+public class AuthSessionModel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -21,15 +18,13 @@ public class AccountModel implements Serializable {
 	@Attribute(version = true)
 	private Long version;
 
-	private String loginId;
+	private String sessionKey;
+
 	private String nickName;
+
 	private String email;
-	private String loginPasswordHash;
-	private OAuthServiceEnum oauthType;
-	@Attribute(lob = true)
-	private TwitterAccessModel twitterAccessModel;
-	@Attribute(lob = true)
-	private FacebookAccessModel facebookAccessModel;
+
+	private String password;
 
 	/**
 	 * Returns the key.
@@ -88,7 +83,7 @@ public class AccountModel implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		AccountModel other = (AccountModel) obj;
+		AuthSessionModel other = (AuthSessionModel) obj;
 		if (key == null) {
 			if (other.key != null) {
 				return false;
@@ -99,12 +94,20 @@ public class AccountModel implements Serializable {
 		return true;
 	}
 
-	public String getLoginId() {
-		return loginId;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setLoginId(String loginId) {
-		this.loginId = loginId;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getNickName() {
@@ -115,43 +118,11 @@ public class AccountModel implements Serializable {
 		this.nickName = nickName;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getSessionKey() {
+		return sessionKey;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public OAuthServiceEnum getOauthType() {
-		return oauthType;
-	}
-
-	public void setOauthType(OAuthServiceEnum oauthType) {
-		this.oauthType = oauthType;
-	}
-
-	public String getLoginPasswordHash() {
-		return loginPasswordHash;
-	}
-
-	public void setLoginPasswordHash(String loginPasswordHash) {
-		this.loginPasswordHash = loginPasswordHash;
-	}
-
-	public TwitterAccessModel getTwitterAccessModel() {
-		return twitterAccessModel;
-	}
-
-	public void setTwitterAccessModel(TwitterAccessModel twitterAccessModel) {
-		this.twitterAccessModel = twitterAccessModel;
-	}
-
-	public FacebookAccessModel getFacebookAccessModel() {
-		return facebookAccessModel;
-	}
-
-	public void setFacebookAccessModel(FacebookAccessModel facebookAccessModel) {
-		this.facebookAccessModel = facebookAccessModel;
+	public void setSessionKey(String sessionKey) {
+		this.sessionKey = sessionKey;
 	}
 }
