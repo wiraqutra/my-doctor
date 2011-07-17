@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.slim3.datastore.Datastore;
 
@@ -38,6 +39,7 @@ public class TwitterOAuth extends BaseAuth {
 		try {
 			String consumerKey = PropertiesUtil.getOauthProperties().getProperty("consumer-key-tw");
 			String consumerSecret = PropertiesUtil.getOauthProperties().getProperty("consumer-secret-tw");
+			String ret = request.getParameter("ret");
 
 			ConfigurationBuilder confbuilder = new ConfigurationBuilder();
 			confbuilder.setOAuthConsumerKey(consumerKey).setOAuthConsumerSecret(consumerSecret);
@@ -53,7 +55,9 @@ public class TwitterOAuth extends BaseAuth {
 			model.setTerminalType(terminalType);
 			model.setExpireDate(DateUtil.getExpireDateMinutes(MydoctorConstant.getSessionExpireMinutes()));
 			model.setSessionKey(tempSessionId);
-
+			if (StringUtils.isNotEmpty(ret)) {
+				model.setRedirectUrl(ret);
+			}
 			Datastore.put(model);
 
 			response.sendRedirect(requestToken.getAuthenticationURL());

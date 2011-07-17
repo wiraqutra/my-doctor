@@ -26,6 +26,8 @@ public class AuthSessionModel implements Serializable {
 
 	private String password;
 
+	private String redirectUrl;
+
 	/**
 	 * Returns the key.
 	 * 
@@ -124,5 +126,13 @@ public class AuthSessionModel implements Serializable {
 
 	public void setSessionKey(String sessionKey) {
 		this.sessionKey = sessionKey;
+	}
+
+	public String getRedirectUrl() {
+		return redirectUrl;
+	}
+
+	public void setRedirectUrl(String redirectUrl) {
+		this.redirectUrl = redirectUrl;
 	}
 }

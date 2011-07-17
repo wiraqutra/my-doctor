@@ -37,6 +37,10 @@ public class UniqueEntityUtil {
 				}
 				return false;
 			}
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
 		}
 	}
 
