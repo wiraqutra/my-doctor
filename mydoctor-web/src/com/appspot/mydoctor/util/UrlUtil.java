@@ -28,10 +28,12 @@ public class UrlUtil {
 		String[] split = url.split("\\?");
 		if (split.length == 2) {
 			Map<String, String> params = getParameterMap(split[1]);
-			params.put("sid", sessionId);
-			sb.append(split[0]).append("?");
-			for (Map.Entry<String, String> entry : params.entrySet()) {
-				sb.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
+			params.remove("sid");
+			sb.append(split[0]).append("?sid=").append(sessionId).append("&");
+			if (!params.isEmpty()) {
+				for (Map.Entry<String, String> entry : params.entrySet()) {
+					sb.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
+				}
 			}
 			sb.deleteCharAt(sb.length() - 1);
 		} else if (split.length == 1) {

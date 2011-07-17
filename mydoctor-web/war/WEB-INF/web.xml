@@ -150,4 +150,11 @@
         </auth-constraint>
     </security-constraint>
     
+    <jsp-config>
+    	<taglib>
+    		<taglib-uri>http://my-doctor.appspot.com/tags/link</taglib-uri>
+    		<taglib-location>/WEB-INF/tld/link.tld</taglib-location>
+    	</taglib>
+    </jsp-config>
+    
 </web-app>
