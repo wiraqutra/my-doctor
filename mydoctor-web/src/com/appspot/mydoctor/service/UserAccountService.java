@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.slim3.datastore.Datastore;
 
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
-import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
 import com.appspot.mydoctor.constant.MydoctorConstant;
@@ -21,11 +21,14 @@ import com.appspot.mydoctor.model.LoginSessionModel;
 import com.appspot.mydoctor.model.TwitterAccessModel;
 import com.appspot.mydoctor.model.TwitterAuthSessionModel;
 import com.appspot.mydoctor.model.UserAccountModel;
+import com.appspot.mydoctor.model.base.AccountModel;
 import com.appspot.mydoctor.util.DateUtil;
 import com.appspot.mydoctor.util.UniqueEntityUtil;
 import com.google.appengine.api.datastore.Key;
 
-public class UserAccountService {
+public class UserAccountService extends AccountService {
+
+	private static Logger LOGGER = Logger.getLogger(UserAccountService.class);
 
 	public boolean register(String name, String email, String plainPassword) throws DuplicateEmailException, InvalidArgumentException {
 		if (StringUtils.isEmpty(name) || StringUtils.isEmpty(email) || StringUtils.isEmpty(plainPassword)) {
@@ -51,20 +54,21 @@ public class UserAccountService {
 
 	public String createLoginSession(TwitterAuthSessionModel tas, String verifier) throws TwitterException, TimeoutException {
 		LoginSessionModel lm = new LoginSessionModel();
-		UserAccountModel um = new UserAccountModel();
+
 		Twitter tw = tas.getTwitter();
 		RequestToken rtoken = tas.getRequestToken();
-		AccessToken atoken = tw.getOAuthAccessToken(rtoken, verifier);
-		TwitterAccessModel tam = TwitterAccessModel.build(atoken.getUserId(), atoken.getScreenName(), atoken.getToken(), atoken.getTokenSecret());
-		um.setEmail(tas.getEmail());
-		um.setNickName(tas.getNickName());
-		um.setLoginId(tas.getEmail());
-		um.setOauthType(OAuthServiceEnum.TWITTER);
-		um.setTwitterAccessModel(tam);
-		lm.setAccount(um);
+		TwitterAccessModel tam = createTwitterAccessModel(tw, rtoken, verifier);
+		AccountModel am = getLoginUser(tam);
+		if (tam == null || am == null) {
+			return "";
+		}
+		am.setOauthType(OAuthServiceEnum.TWITTER);
+		am.getTwitterAccessModelRef().setModel(tam);
+		lm.getUserAccountModelRef().setModel((UserAccountModel) am);
 		lm.setExpireDate(DateUtil.getExpireDateMinutes(MydoctorConstant.getSessionExpireMinutes()));
 		lm.setSessionKey(UniqueEntityUtil.getSessionKey(LoginSessionModel.class.getSimpleName(), LoginSessionModel.SESSION_KEY_LENGTH));
 		Datastore.put(lm);
 		return lm.getSessionKey();
 	}
+
 }

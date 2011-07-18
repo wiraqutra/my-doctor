@@ -22,9 +22,13 @@ public class TwController extends PcBaseController {
 			if (tas != null) {
 				UserAccountService uas = new UserAccountService();
 				String skey = uas.createLoginSession(tas, verifier);
-				requestScope("sessionKey", skey);
-				if (StringUtils.isNotEmpty(tas.getRedirectUrl())) {
-					return redirect(UrlUtil.addSessionId(tas.getRedirectUrl(), skey));
+				if (StringUtils.isNotEmpty(skey)) {
+					requestScope("sessionKey", skey);
+					if (StringUtils.isNotEmpty(tas.getRedirectUrl())) {
+						return redirect(UrlUtil.addSessionId(tas.getRedirectUrl(), skey));
+					}
+				} else {
+					return redirect("/pc/register");
 				}
 			}
 		}

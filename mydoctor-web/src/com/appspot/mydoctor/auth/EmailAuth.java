@@ -9,6 +9,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slim3.datastore.Datastore;
 
+import com.appspot.mydoctor.enumeration.AuthActionEnum;
 import com.appspot.mydoctor.enumeration.TerminalTypeEnum;
 import com.appspot.mydoctor.meta.UserAccountModelMeta;
 import com.appspot.mydoctor.model.UserAccountModel;
@@ -23,7 +24,7 @@ public class EmailAuth extends BaseAuth {
 	}
 
 	@Override
-	public boolean auth(HttpServletRequest request, HttpServletResponse response, TerminalTypeEnum terminalType) {
+	public AuthActionEnum auth(HttpServletRequest request, HttpServletResponse response, TerminalTypeEnum terminalType) {
 		String email = request.getParameter("email");
 		String password = request.getParameter("passwd");
 		if (StringUtils.isNotEmpty(email)) {
@@ -32,11 +33,11 @@ public class EmailAuth extends BaseAuth {
 			if (list != null && list.size() == 1) {
 				UserAccountModel model = list.get(0);
 				if (DigestUtils.sha512Hex(password).equals(model.getLoginPasswordHash())) {
-					return true;
+					return AuthActionEnum.SUCCESS;
 				}
 			}
 		}
-		return false;
+		return AuthActionEnum.FAILED;
 	}
 
 }

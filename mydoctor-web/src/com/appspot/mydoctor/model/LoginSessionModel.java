@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
+import org.slim3.datastore.ModelRef;
 
 import com.google.appengine.api.datastore.Key;
 
@@ -23,8 +24,7 @@ public class LoginSessionModel implements Serializable {
 
 	private String sessionKey;
 
-	@Attribute(lob = true)
-	private UserAccountModel account;
+	private ModelRef<UserAccountModel> userAccountModelRef = new ModelRef<UserAccountModel>(UserAccountModel.class);
 
 	private Date expireDate;
 
@@ -96,14 +96,6 @@ public class LoginSessionModel implements Serializable {
 		return true;
 	}
 
-	public UserAccountModel getAccount() {
-		return account;
-	}
-
-	public void setAccount(UserAccountModel account) {
-		this.account = account;
-	}
-
 	public Date getExpireDate() {
 		return expireDate;
 	}
@@ -118,5 +110,9 @@ public class LoginSessionModel implements Serializable {
 
 	public void setSessionKey(String sessionKey) {
 		this.sessionKey = sessionKey;
+	}
+
+	public ModelRef<UserAccountModel> getUserAccountModelRef() {
+		return userAccountModelRef;
 	}
 }

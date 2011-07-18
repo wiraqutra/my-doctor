@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
+import org.slim3.datastore.ModelRef;
 
 import com.appspot.mydoctor.enumeration.OAuthServiceEnum;
 import com.appspot.mydoctor.model.FacebookAccessModel;
@@ -26,10 +27,10 @@ public class AccountModel implements Serializable {
 	private String email;
 	private String loginPasswordHash;
 	private OAuthServiceEnum oauthType;
-	@Attribute(lob = true)
-	private TwitterAccessModel twitterAccessModel;
-	@Attribute(lob = true)
-	private FacebookAccessModel facebookAccessModel;
+
+	private ModelRef<TwitterAccessModel> twitterAccessModelRef = new ModelRef<TwitterAccessModel>(TwitterAccessModel.class);
+
+	private ModelRef<FacebookAccessModel> facebookAccessModelRef = new ModelRef<FacebookAccessModel>(FacebookAccessModel.class);
 
 	/**
 	 * Returns the key.
@@ -139,19 +140,12 @@ public class AccountModel implements Serializable {
 		this.loginPasswordHash = loginPasswordHash;
 	}
 
-	public TwitterAccessModel getTwitterAccessModel() {
-		return twitterAccessModel;
+	public ModelRef<TwitterAccessModel> getTwitterAccessModelRef() {
+		return twitterAccessModelRef;
 	}
 
-	public void setTwitterAccessModel(TwitterAccessModel twitterAccessModel) {
-		this.twitterAccessModel = twitterAccessModel;
+	public ModelRef<FacebookAccessModel> getFacebookAccessModelRef() {
+		return facebookAccessModelRef;
 	}
 
-	public FacebookAccessModel getFacebookAccessModel() {
-		return facebookAccessModel;
-	}
-
-	public void setFacebookAccessModel(FacebookAccessModel facebookAccessModel) {
-		this.facebookAccessModel = facebookAccessModel;
-	}
 }
