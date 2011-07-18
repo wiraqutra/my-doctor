@@ -19,5 +19,7 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/apache-log4j-extras-1.1.jar"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/App Engine (5)"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-codec-1.5.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/velocity-1.7-dep.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/velocity-1.7.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

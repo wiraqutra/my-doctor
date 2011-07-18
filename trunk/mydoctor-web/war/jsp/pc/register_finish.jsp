@@ -10,13 +10,10 @@
 <title>pc Register</title>
 </head>
 <body>
-<p>新規登録</p>
+<p>新規登録完了</p>
 
-<form name="registerForm" method="post" action="/pc/register">
-	<p><input type="text" name="email" value="${f:h(email)}" class="${f:errorClass('email','err')}"/>${f:h(errors.email)}</p>
-	<p><input type="text" name="nickName" value="${f:h(nickName)}" class="${f:errorClass('nickName','err')}"/>${f:h(errors.nickName)}</p>
-	<p><input type="submit" value="送信"/></p>
-	<input type="hidden" name="cmd" value="submit"/>
-</form>
+メールを送信しました。<br>
+メールに書かれたURLから登録を完了させてください。
+
 </body>
 </html>
