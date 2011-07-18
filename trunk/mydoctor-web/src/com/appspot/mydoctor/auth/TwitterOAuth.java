@@ -1,7 +1,5 @@
 package com.appspot.mydoctor.auth;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,6 +14,7 @@ import twitter4j.auth.RequestToken;
 import twitter4j.conf.ConfigurationBuilder;
 
 import com.appspot.mydoctor.constant.MydoctorConstant;
+import com.appspot.mydoctor.enumeration.AuthActionEnum;
 import com.appspot.mydoctor.enumeration.TerminalTypeEnum;
 import com.appspot.mydoctor.exception.TimeoutException;
 import com.appspot.mydoctor.model.TwitterAuthSessionModel;
@@ -35,7 +34,7 @@ public class TwitterOAuth extends BaseAuth {
 	}
 
 	@Override
-	public boolean auth(HttpServletRequest request, HttpServletResponse response, TerminalTypeEnum terminalType) {
+	public AuthActionEnum auth(HttpServletRequest request, HttpServletResponse response, TerminalTypeEnum terminalType) {
 		try {
 			String consumerKey = PropertiesUtil.getOauthProperties().getProperty("consumer-key-tw");
 			String consumerSecret = PropertiesUtil.getOauthProperties().getProperty("consumer-secret-tw");
@@ -60,16 +59,15 @@ public class TwitterOAuth extends BaseAuth {
 			}
 			Datastore.put(model);
 
-			response.sendRedirect(requestToken.getAuthenticationURL());
+			setRedirectURL(requestToken.getAuthenticationURL());
+			return AuthActionEnum.REDIRECT;
 
 		} catch (TwitterException e) {
-			LOGGER.fatal("twitter auth failed", e);
-		} catch (IOException e) {
 			LOGGER.fatal("twitter auth failed", e);
 		} catch (TimeoutException e) {
 			LOGGER.fatal("generate session id failed", e);
 		}
-		return false;
+		return AuthActionEnum.FAILED;
 	}
 
 	private String getCallbackURL(HttpServletRequest request, String sessionId) {

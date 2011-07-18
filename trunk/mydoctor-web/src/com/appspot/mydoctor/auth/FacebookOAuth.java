@@ -3,6 +3,7 @@ package com.appspot.mydoctor.auth;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.appspot.mydoctor.enumeration.AuthActionEnum;
 import com.appspot.mydoctor.enumeration.TerminalTypeEnum;
 import com.appspot.mydoctor.model.base.AccountModel;
 
@@ -15,9 +16,9 @@ public class FacebookOAuth extends BaseAuth {
 	}
 
 	@Override
-	public boolean auth(HttpServletRequest request, HttpServletResponse response, TerminalTypeEnum terminalType) {
+	public AuthActionEnum auth(HttpServletRequest request, HttpServletResponse response, TerminalTypeEnum terminalType) {
 
-		return false;
+		return AuthActionEnum.FAILED;
 	}
 
 }

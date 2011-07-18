@@ -21,7 +21,7 @@ public abstract class PcLoginBaseController extends PcBaseController {
 		}
 		LoginSessionModelMeta meta = LoginSessionModelMeta.get();
 		loginSession = Datastore.query(meta).filter(meta.sessionKey.equal(sid)).asSingle();
-		if (loginSession == null || loginSession.getAccount() == null) {
+		if (loginSession == null || loginSession.getUserAccountModelRef().getModel() == null) {
 			return redirect("/pc/login?ret=" + requestURL);
 		}
 		return execute();

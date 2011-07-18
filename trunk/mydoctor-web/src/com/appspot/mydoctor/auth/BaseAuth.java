@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.appspot.mydoctor.enumeration.AuthActionEnum;
 import com.appspot.mydoctor.enumeration.SessionKeyEnum;
 import com.appspot.mydoctor.enumeration.TerminalTypeEnum;
 import com.appspot.mydoctor.model.LoginSessionModel;
@@ -17,9 +18,11 @@ public abstract class BaseAuth {
 
 	protected AccountModel user = null;
 
+	private String redirectURL;
+
 	public abstract AccountModel getUser();
 
-	public abstract boolean auth(HttpServletRequest request, HttpServletResponse response, TerminalTypeEnum terminalType);
+	public abstract AuthActionEnum auth(HttpServletRequest request, HttpServletResponse response, TerminalTypeEnum terminalType);
 
 	protected LoginSessionModel getSessionModel(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -28,5 +31,19 @@ public abstract class BaseAuth {
 			return model;
 		}
 		return null;
+	}
+
+	/**
+	 * @return the redirectURL
+	 */
+	public String getRedirectURL() {
+		return redirectURL;
+	}
+
+	/**
+	 * @param redirectURL the redirectURL to set
+	 */
+	public void setRedirectURL(String redirectURL) {
+		this.redirectURL = redirectURL;
 	}
 }

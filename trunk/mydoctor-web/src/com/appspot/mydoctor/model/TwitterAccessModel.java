@@ -3,8 +3,10 @@ package com.appspot.mydoctor.model;
 import java.io.Serializable;
 
 import org.slim3.datastore.Attribute;
+import org.slim3.datastore.InverseModelRef;
 import org.slim3.datastore.Model;
 
+import com.appspot.mydoctor.model.base.AccountModel;
 import com.google.appengine.api.datastore.Key;
 
 @Model(schemaVersion = 1)
@@ -22,6 +24,9 @@ public class TwitterAccessModel implements Serializable {
 	private String screenName;
 	private String accessToken;
 	private String accessTokenSecret;
+
+	@Attribute(persistent = false)
+	private InverseModelRef<AccountModel, TwitterAccessModel> accountModelRef = new InverseModelRef<AccountModel, TwitterAccessModel>(AccountModel.class, "twitterAccessModelRef", this);
 
 	public static TwitterAccessModel build(Long userId, String screenName, String accessToken, String accessTokenSecret) {
 		TwitterAccessModel model = new TwitterAccessModel();
@@ -131,4 +136,9 @@ public class TwitterAccessModel implements Serializable {
 	public void setAccessTokenSecret(String accessTokenSecret) {
 		this.accessTokenSecret = accessTokenSecret;
 	}
+
+	public InverseModelRef<AccountModel, TwitterAccessModel> getAccountModelRef() {
+		return accountModelRef;
+	}
+
 }

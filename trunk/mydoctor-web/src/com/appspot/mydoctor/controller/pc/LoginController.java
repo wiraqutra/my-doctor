@@ -42,8 +42,13 @@ public class LoginController extends PcBaseController {
 		}
 
 		if (auth != null) {
-			if (auth.auth(request, response, TerminalTypeEnum.PC)) {
-				return redirect(ret);
+			switch (auth.auth(request, response, TerminalTypeEnum.PC)) {
+			case REDIRECT:
+				return redirect(auth.getRedirectURL());
+			case SUCCESS:
+				break;
+			case FAILED:
+				break;
 			}
 		}
 		requestScope("ret", ret);
