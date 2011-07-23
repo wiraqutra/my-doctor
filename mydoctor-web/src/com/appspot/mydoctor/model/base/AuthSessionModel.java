@@ -1,6 +1,7 @@
 package com.appspot.mydoctor.model.base;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
@@ -27,6 +28,8 @@ public class AuthSessionModel implements Serializable {
 	private String password;
 
 	private String redirectUrl;
+
+	private Date expireDate;
 
 	/**
 	 * Returns the key.
@@ -134,5 +137,13 @@ public class AuthSessionModel implements Serializable {
 
 	public void setRedirectUrl(String redirectUrl) {
 		this.redirectUrl = redirectUrl;
+	}
+
+	public Date getExpireDate() {
+		return expireDate;
+	}
+
+	public void setExpireDate(Date expireDate) {
+		this.expireDate = expireDate;
 	}
 }

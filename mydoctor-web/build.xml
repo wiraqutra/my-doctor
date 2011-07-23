@@ -55,6 +55,13 @@
         <gen-view wardir="${jspDir}" controllerPath="${controllerPath}"/>
     </target>
 
+    <target name="gen-controller-cron">
+        <input message="Input a controller path." addproperty="controllerPath"/>
+        <gen-controller srcdir="${srcDir}" testdir="${testDir}" wardir="${warDir}" controllerpath="${controllerPath}"
+             useView="true" superclassname="com.appspot.mydoctor.controller.base.CronBaseController"/>
+        <gen-view wardir="${jspDir}" controllerPath="${controllerPath}"/>
+    </target>
+	
     <target name="gen-controller-without-view">
         <input message="Input a controller path." addproperty="controllerPath"/>
         <gen-controller srcdir="${srcDir}" testdir="${testDir}" wardir="${warDir}" controllerpath="${controllerPath}"
