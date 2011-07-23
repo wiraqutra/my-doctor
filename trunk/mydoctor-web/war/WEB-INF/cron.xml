@@ -5,4 +5,10 @@
 	<description>Clean up sessions</description>
     <schedule>every 60 minutes</schedule>
   </cron>
+  <cron>
+    <url>/cron/session/clear</url>
+	<description>Clean up sessions every 15min</description>
+    <schedule>every 15 minutes synchronized</schedule>
+    <timezone>Asia/Tokyo</timezone>
+  </cron>
 </cronentries>

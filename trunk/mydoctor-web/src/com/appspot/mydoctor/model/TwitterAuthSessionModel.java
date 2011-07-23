@@ -1,7 +1,5 @@
 package com.appspot.mydoctor.model;
 
-import java.util.Date;
-
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
 
@@ -25,8 +23,6 @@ public class TwitterAuthSessionModel extends AuthSessionModel {
 	private RequestToken requestToken;
 
 	private TerminalTypeEnum terminalType;
-
-	private Date expireDate;
 
 	public Twitter getTwitter() {
 		return twitter;
@@ -52,11 +48,4 @@ public class TwitterAuthSessionModel extends AuthSessionModel {
 		this.terminalType = terminalType;
 	}
 
-	public Date getExpireDate() {
-		return expireDate;
-	}
-
-	public void setExpireDate(Date expireDate) {
-		this.expireDate = expireDate;
-	}
 }
