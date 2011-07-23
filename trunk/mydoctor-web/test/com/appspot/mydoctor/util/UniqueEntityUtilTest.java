@@ -6,7 +6,7 @@ import java.util.Map;
 import org.junit.Test;
 import org.slim3.tester.AppEngineTestCase;
 
-import com.appspot.mydoctor.exception.TimeoutException;
+import com.appspot.mydoctor.exception.RandomKeyCreateTimeoutException;
 import com.appspot.mydoctor.model.LoginSessionModel;
 
 public class UniqueEntityUtilTest extends AppEngineTestCase {
@@ -23,7 +23,7 @@ public class UniqueEntityUtilTest extends AppEngineTestCase {
 				} else {
 					map.put(uniqueKey, true);
 				}
-			} catch (TimeoutException e) {
+			} catch (RandomKeyCreateTimeoutException e) {
 				throw new RuntimeException(Integer.toString(i) + " times duplicate key");
 			}
 		}

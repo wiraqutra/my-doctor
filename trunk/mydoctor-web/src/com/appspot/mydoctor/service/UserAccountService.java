@@ -14,7 +14,7 @@ import twitter4j.auth.RequestToken;
 import com.appspot.mydoctor.constant.MydoctorConstant;
 import com.appspot.mydoctor.enumeration.OAuthServiceEnum;
 import com.appspot.mydoctor.exception.InvalidArgumentException;
-import com.appspot.mydoctor.exception.TimeoutException;
+import com.appspot.mydoctor.exception.RandomKeyCreateTimeoutException;
 import com.appspot.mydoctor.exception.login.DuplicateEmailException;
 import com.appspot.mydoctor.meta.UserAccountModelMeta;
 import com.appspot.mydoctor.model.LoginSessionModel;
@@ -52,7 +52,7 @@ public class UserAccountService extends AccountService {
 		return false;
 	}
 
-	public String createLoginSession(TwitterAuthSessionModel tas, String verifier) throws TwitterException, TimeoutException {
+	public String createLoginSession(TwitterAuthSessionModel tas, String verifier) throws TwitterException, RandomKeyCreateTimeoutException {
 		LoginSessionModel lm = new LoginSessionModel();
 
 		Twitter tw = tas.getTwitter();
