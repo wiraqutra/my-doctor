@@ -1,10 +1,14 @@
 package com.appspot.mydoctor.controller.pc;
 
+import java.io.IOException;
+
 import org.slim3.controller.Navigation;
 import org.slim3.controller.validator.Validators;
 
 import com.appspot.mydoctor.controller.base.PcBaseController;
 import com.appspot.mydoctor.enumeration.TerminalTypeEnum;
+import com.appspot.mydoctor.exception.RandomKeyCreateTimeoutException;
+import com.appspot.mydoctor.exception.login.DuplicateEmailException;
 import com.appspot.mydoctor.service.RegisterService;
 import com.appspot.mydoctor.validator.MailAddressValidator;
 
@@ -22,7 +26,15 @@ public class RegisterController extends PcBaseController {
 
 		if ("submit".equals(cmd) && validate()) {
 			RegisterService service = new RegisterService();
-			service.register(nickName, email, TerminalTypeEnum.PC);
+			try {
+				service.register(nickName, email, TerminalTypeEnum.PC);
+			} catch (DuplicateEmailException e) {
+
+			} catch (IOException e) {
+
+			} catch (RandomKeyCreateTimeoutException e) {
+
+			}
 			return forward("register_finish.jsp");
 		}
 		return forward("register.jsp");

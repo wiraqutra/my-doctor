@@ -4,7 +4,7 @@ import java.util.ConcurrentModificationException;
 
 import org.apache.commons.lang.RandomStringUtils;
 
-import com.appspot.mydoctor.exception.TimeoutException;
+import com.appspot.mydoctor.exception.RandomKeyCreateTimeoutException;
 import com.appspot.mydoctor.model.TemporaryAccountModel;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -45,27 +45,27 @@ public class UniqueEntityUtil {
 		}
 	}
 
-	public static String getSessionKey(String kindName, int length) throws TimeoutException {
+	public static String getSessionKey(String kindName, int length) throws RandomKeyCreateTimeoutException {
 		String sessionKey = RandomStringUtils.randomAlphanumeric(length);
 		int i = 0;
 		while (!isUnique(kindName, sessionKey)) {
 			sessionKey = RandomStringUtils.randomAlphanumeric(length);
 			i++;
 			if (i > 10) {
-				throw new TimeoutException();
+				throw new RandomKeyCreateTimeoutException();
 			}
 		}
 		return sessionKey;
 	}
 
-	public static String getMailAccessKey() throws TimeoutException {
+	public static String getMailAccessKey() throws RandomKeyCreateTimeoutException {
 		String key = RandomStringUtils.randomAlphanumeric(10);
 		int i = 0;
 		while (!isUnique(TemporaryAccountModel.class.getSimpleName(), key)) {
 			key = RandomStringUtils.randomAlphanumeric(10);
 			i++;
 			if (i > 10) {
-				throw new TimeoutException();
+				throw new RandomKeyCreateTimeoutException();
 			}
 		}
 		return key;

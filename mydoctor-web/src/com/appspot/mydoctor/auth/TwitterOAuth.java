@@ -16,7 +16,7 @@ import twitter4j.conf.ConfigurationBuilder;
 import com.appspot.mydoctor.constant.MydoctorConstant;
 import com.appspot.mydoctor.enumeration.AuthActionEnum;
 import com.appspot.mydoctor.enumeration.TerminalTypeEnum;
-import com.appspot.mydoctor.exception.TimeoutException;
+import com.appspot.mydoctor.exception.RandomKeyCreateTimeoutException;
 import com.appspot.mydoctor.model.TwitterAuthSessionModel;
 import com.appspot.mydoctor.model.base.AccountModel;
 import com.appspot.mydoctor.util.DateUtil;
@@ -64,7 +64,7 @@ public class TwitterOAuth extends BaseAuth {
 
 		} catch (TwitterException e) {
 			LOGGER.fatal("twitter auth failed", e);
-		} catch (TimeoutException e) {
+		} catch (RandomKeyCreateTimeoutException e) {
 			LOGGER.fatal("generate session id failed", e);
 		}
 		return AuthActionEnum.FAILED;
