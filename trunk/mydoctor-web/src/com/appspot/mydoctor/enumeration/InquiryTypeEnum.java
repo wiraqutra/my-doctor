@@ -19,4 +19,12 @@ public enum InquiryTypeEnum {
 		}
 		return null;
 	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public String getName() {
+		return name;
+	}
 }

@@ -9,19 +9,32 @@
 <title>質問票</title>
 </head>
 <body>
-<p>${title}</p>
-<p>Q${inquiryNo}</p>
+<form method="post" action="/pc/inquiry">
+<p>${inquiry.inquiryTitle}</p>
+<p>${inquiry.inquiryCode}</p>
+<c:forEach items="${inquiry.inquiryDataPackListRef.modelList}" var="pack">
+<p>Q${pack.questionNumber} : ${f:h(pack.questionTitle)}</p>
 <c:choose>
-	<c:when test="${inquiry.typeCode eq 'select'}">
-		<c:forEach items="${inquiry.data }" var="data">
-		<button name="answer" value="${data.id}">${f:h(data.label)}</button>
+	<c:when test="${pack.inquiryType.code eq 'select'}">
+		<c:forEach items="${pack.answerListRef.modelList}" var="answer">
+		<label><input type="radio" name="q${pack.questionNumber}" value="${answer.id}"/>${f:h(answer.label)}</label>
 		</c:forEach>
 	</c:when>
-	<c:when test="${inquiry.typeCode eq 'checkbox'}">
-		<c:forEach items="${inquiry.data }" var="data">
-		${f:h(data.label)}<input type="checkbox" name="answerArray" value="${data.id}"/>
+	<c:when test="${pack.inquiryType.code eq 'checkbox'}">
+		<c:forEach items="${pack.answerListRef.modelList}" var="answer">
+		<label>${f:h(answer.label)}<input type="checkbox" name="q${pack.questionNumber}Array" value="${answer.id}"/></label>
 		</c:forEach>
 	</c:when>
 </c:choose>
+
+</c:forEach>
+
+<p>
+<input type="submit" name="back" value="戻る">
+<input type="submit" name="next" value="次へ">
+</p>
+<input type="hidden" name="step" value="${step}"/>
+<input type="hidden" name="answerSessionKey" value="${f:h(answerSessionKey)}"/>
+</form>
 </body>
 </html>
