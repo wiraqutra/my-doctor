@@ -1,13 +1,13 @@
-package com.appspot.mydoctor.model;
+package com.appspot.mydoctor.model.inquiry;
 
 import org.slim3.tester.AppEngineTestCase;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-public class UserAccountModelTest extends AppEngineTestCase {
+public class inquiryDataModelTest extends AppEngineTestCase {
 
-    private UserAccountModel model = new UserAccountModel();
+    private inquiryDataModel model = new inquiryDataModel();
 
     @Test
     public void test() throws Exception {

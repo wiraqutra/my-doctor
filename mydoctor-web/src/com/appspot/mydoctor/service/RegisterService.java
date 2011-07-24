@@ -11,7 +11,7 @@ import com.appspot.mydoctor.constant.MydoctorConstant;
 import com.appspot.mydoctor.enumeration.TerminalTypeEnum;
 import com.appspot.mydoctor.exception.RandomKeyCreateTimeoutException;
 import com.appspot.mydoctor.exception.login.DuplicateEmailException;
-import com.appspot.mydoctor.meta.UserAccountModelMeta;
+import com.appspot.mydoctor.meta.account.UserAccountModelMeta;
 import com.appspot.mydoctor.model.TemporaryAccountModel;
 import com.appspot.mydoctor.util.DateUtil;
 import com.appspot.mydoctor.util.MailUtil;

@@ -1,4 +1,4 @@
-package com.appspot.mydoctor.model;
+package com.appspot.mydoctor.model.account;
 
 import java.io.Serializable;
 
@@ -9,6 +9,6 @@ import com.appspot.mydoctor.model.base.AccountModel;
 @Model(schemaVersion = 1)
 public class UserAccountModel extends AccountModel implements Serializable {
 
-	private static final long serialVersionUID = -7730560284318893568L;
+    private static final long serialVersionUID = 1L;
 
 }

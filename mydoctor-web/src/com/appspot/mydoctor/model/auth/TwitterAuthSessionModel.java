@@ -1,4 +1,6 @@
-package com.appspot.mydoctor.model;
+package com.appspot.mydoctor.model.auth;
+
+import java.io.Serializable;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
@@ -10,9 +12,9 @@ import com.appspot.mydoctor.enumeration.TerminalTypeEnum;
 import com.appspot.mydoctor.model.base.AuthSessionModel;
 
 @Model(schemaVersion = 1)
-public class TwitterAuthSessionModel extends AuthSessionModel {
+public class TwitterAuthSessionModel extends AuthSessionModel implements Serializable {
 
-	private static final long serialVersionUID = 6583185315862703275L;
+	private static final long serialVersionUID = 1L;
 
 	public static final int SESSION_KEY_LENGTH = 16;
 

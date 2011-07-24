@@ -5,8 +5,8 @@ import org.slim3.controller.Navigation;
 import org.slim3.datastore.Datastore;
 
 import com.appspot.mydoctor.controller.base.PcBaseController;
-import com.appspot.mydoctor.meta.TwitterAuthSessionModelMeta;
-import com.appspot.mydoctor.model.TwitterAuthSessionModel;
+import com.appspot.mydoctor.meta.auth.TwitterAuthSessionModelMeta;
+import com.appspot.mydoctor.model.auth.TwitterAuthSessionModel;
 import com.appspot.mydoctor.service.UserAccountService;
 import com.appspot.mydoctor.util.UrlUtil;
 

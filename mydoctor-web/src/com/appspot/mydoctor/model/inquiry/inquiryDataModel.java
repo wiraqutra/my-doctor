@@ -1,21 +1,17 @@
-package com.appspot.mydoctor.model;
+package com.appspot.mydoctor.model.inquiry;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
-import org.slim3.datastore.ModelRef;
 
-import com.appspot.mydoctor.model.account.UserAccountModel;
+import com.appspot.mydoctor.enumeration.InquiryTypeEnum;
 import com.google.appengine.api.datastore.Key;
 
 @Model(schemaVersion = 1)
-public class LoginSessionModel implements Serializable {
+public class inquiryDataModel implements Serializable {
 
-	private static final long serialVersionUID = -7877808037028477224L;
-
-	public static final int SESSION_KEY_LENGTH = 16;
+	private static final long serialVersionUID = 1L;
 
 	@Attribute(primaryKey = true)
 	private Key key;
@@ -23,11 +19,9 @@ public class LoginSessionModel implements Serializable {
 	@Attribute(version = true)
 	private Long version;
 
-	private String sessionKey;
-
-	private ModelRef<UserAccountModel> userAccountModelRef = new ModelRef<UserAccountModel>(UserAccountModel.class);
-
-	private Date expireDate;
+	private Integer id;
+	private String label;
+	private InquiryTypeEnum inquiryType;
 
 	/**
 	 * Returns the key.
@@ -86,7 +80,7 @@ public class LoginSessionModel implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		LoginSessionModel other = (LoginSessionModel) obj;
+		inquiryDataModel other = (inquiryDataModel) obj;
 		if (key == null) {
 			if (other.key != null) {
 				return false;
@@ -97,23 +91,27 @@ public class LoginSessionModel implements Serializable {
 		return true;
 	}
 
-	public Date getExpireDate() {
-		return expireDate;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setExpireDate(Date expireDate) {
-		this.expireDate = expireDate;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public String getSessionKey() {
-		return sessionKey;
+	public String getLabel() {
+		return label;
 	}
 
-	public void setSessionKey(String sessionKey) {
-		this.sessionKey = sessionKey;
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
-	public ModelRef<UserAccountModel> getUserAccountModelRef() {
-		return userAccountModelRef;
+	public InquiryTypeEnum getInquiryType() {
+		return inquiryType;
+	}
+
+	public void setInquiryType(InquiryTypeEnum inquiryType) {
+		this.inquiryType = inquiryType;
 	}
 }

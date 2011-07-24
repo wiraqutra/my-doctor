@@ -17,7 +17,7 @@ import com.appspot.mydoctor.constant.MydoctorConstant;
 import com.appspot.mydoctor.enumeration.AuthActionEnum;
 import com.appspot.mydoctor.enumeration.TerminalTypeEnum;
 import com.appspot.mydoctor.exception.RandomKeyCreateTimeoutException;
-import com.appspot.mydoctor.model.TwitterAuthSessionModel;
+import com.appspot.mydoctor.model.auth.TwitterAuthSessionModel;
 import com.appspot.mydoctor.model.base.AccountModel;
 import com.appspot.mydoctor.util.DateUtil;
 import com.appspot.mydoctor.util.PropertiesUtil;

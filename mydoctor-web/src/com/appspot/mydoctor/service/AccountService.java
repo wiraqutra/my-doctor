@@ -8,9 +8,9 @@ import twitter4j.TwitterException;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
-import com.appspot.mydoctor.meta.TwitterAccessModelMeta;
-import com.appspot.mydoctor.model.TwitterAccessModel;
+import com.appspot.mydoctor.meta.oauth.TwitterAccessModelMeta;
 import com.appspot.mydoctor.model.base.AccountModel;
+import com.appspot.mydoctor.model.oauth.TwitterAccessModel;
 
 public class AccountService {
 
