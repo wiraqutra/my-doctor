@@ -5,9 +5,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-public class inquiryDataModelTest extends AppEngineTestCase {
+public class AnswerSessionModelTest extends AppEngineTestCase {
 
-    private inquiryDataModel model = new inquiryDataModel();
+    private AnswerSessionModel model = new AnswerSessionModel();
 
     @Test
     public void test() throws Exception {

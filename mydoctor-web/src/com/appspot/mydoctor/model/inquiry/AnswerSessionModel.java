@@ -1,15 +1,15 @@
 package com.appspot.mydoctor.model.inquiry;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
 
-import com.appspot.mydoctor.enumeration.InquiryTypeEnum;
 import com.google.appengine.api.datastore.Key;
 
 @Model(schemaVersion = 1)
-public class inquiryDataModel implements Serializable {
+public class AnswerSessionModel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -19,9 +19,8 @@ public class inquiryDataModel implements Serializable {
 	@Attribute(version = true)
 	private Long version;
 
-	private Integer id;
-	private String label;
-	private InquiryTypeEnum inquiryType;
+	@Attribute(lob = true)
+	private Map<String, String> questionAnswerMap;
 
 	/**
 	 * Returns the key.
@@ -80,7 +79,7 @@ public class inquiryDataModel implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		inquiryDataModel other = (inquiryDataModel) obj;
+		AnswerSessionModel other = (AnswerSessionModel) obj;
 		if (key == null) {
 			if (other.key != null) {
 				return false;
@@ -91,27 +90,12 @@ public class inquiryDataModel implements Serializable {
 		return true;
 	}
 
-	public Integer getId() {
-		return id;
+	public Map<String, String> getQuestionAnswerMap() {
+		return questionAnswerMap;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setQuestionAnswerMap(Map<String, String> questionAnswerMap) {
+		this.questionAnswerMap = questionAnswerMap;
 	}
 
-	public String getLabel() {
-		return label;
-	}
-
-	public void setLabel(String label) {
-		this.label = label;
-	}
-
-	public InquiryTypeEnum getInquiryType() {
-		return inquiryType;
-	}
-
-	public void setInquiryType(InquiryTypeEnum inquiryType) {
-		this.inquiryType = inquiryType;
-	}
 }
