@@ -1,4 +1,4 @@
-package com.appspot.mydoctor.model;
+package com.appspot.mydoctor.model.auth;
 
 import org.slim3.tester.AppEngineTestCase;
 import org.junit.Test;

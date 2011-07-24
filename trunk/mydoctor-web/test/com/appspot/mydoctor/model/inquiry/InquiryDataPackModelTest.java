@@ -1,13 +1,13 @@
-package com.appspot.mydoctor.model;
+package com.appspot.mydoctor.model.inquiry;
 
 import org.slim3.tester.AppEngineTestCase;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-public class TwitterAccessModelTest extends AppEngineTestCase {
+public class InquiryDataPackModelTest extends AppEngineTestCase {
 
-    private TwitterAccessModel model = new TwitterAccessModel();
+    private InquiryDataPackModel model = new InquiryDataPackModel();
 
     @Test
     public void test() throws Exception {

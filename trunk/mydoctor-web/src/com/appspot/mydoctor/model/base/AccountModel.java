@@ -7,8 +7,8 @@ import org.slim3.datastore.Model;
 import org.slim3.datastore.ModelRef;
 
 import com.appspot.mydoctor.enumeration.OAuthServiceEnum;
-import com.appspot.mydoctor.model.FacebookAccessModel;
-import com.appspot.mydoctor.model.TwitterAccessModel;
+import com.appspot.mydoctor.model.oauth.FaceBookAccessModel;
+import com.appspot.mydoctor.model.oauth.TwitterAccessModel;
 import com.google.appengine.api.datastore.Key;
 
 @Model(schemaVersion = 1)
@@ -30,7 +30,7 @@ public class AccountModel implements Serializable {
 
 	private ModelRef<TwitterAccessModel> twitterAccessModelRef = new ModelRef<TwitterAccessModel>(TwitterAccessModel.class);
 
-	private ModelRef<FacebookAccessModel> facebookAccessModelRef = new ModelRef<FacebookAccessModel>(FacebookAccessModel.class);
+	private ModelRef<FaceBookAccessModel> faceBookAccessModelRef = new ModelRef<FaceBookAccessModel>(FaceBookAccessModel.class);
 
 	/**
 	 * Returns the key.
@@ -144,8 +144,8 @@ public class AccountModel implements Serializable {
 		return twitterAccessModelRef;
 	}
 
-	public ModelRef<FacebookAccessModel> getFacebookAccessModelRef() {
-		return facebookAccessModelRef;
+	public ModelRef<FaceBookAccessModel> getFaceBookAccessModelRef() {
+		return faceBookAccessModelRef;
 	}
 
 }

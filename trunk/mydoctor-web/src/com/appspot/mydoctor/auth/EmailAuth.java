@@ -11,8 +11,8 @@ import org.slim3.datastore.Datastore;
 
 import com.appspot.mydoctor.enumeration.AuthActionEnum;
 import com.appspot.mydoctor.enumeration.TerminalTypeEnum;
-import com.appspot.mydoctor.meta.UserAccountModelMeta;
-import com.appspot.mydoctor.model.UserAccountModel;
+import com.appspot.mydoctor.meta.account.UserAccountModelMeta;
+import com.appspot.mydoctor.model.account.UserAccountModel;
 import com.appspot.mydoctor.model.base.AccountModel;
 
 public class EmailAuth extends BaseAuth {

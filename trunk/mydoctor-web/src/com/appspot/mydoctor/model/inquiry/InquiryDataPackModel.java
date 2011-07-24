@@ -1,16 +1,14 @@
-package com.appspot.mydoctor.model;
+package com.appspot.mydoctor.model.inquiry;
 
 import java.io.Serializable;
 
 import org.slim3.datastore.Attribute;
-import org.slim3.datastore.InverseModelRef;
 import org.slim3.datastore.Model;
 
-import com.appspot.mydoctor.model.base.AccountModel;
 import com.google.appengine.api.datastore.Key;
 
 @Model(schemaVersion = 1)
-public class FacebookAccessModel implements Serializable {
+public class InquiryDataPackModel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,8 +18,7 @@ public class FacebookAccessModel implements Serializable {
 	@Attribute(version = true)
 	private Long version;
 
-	@Attribute(persistent = false)
-	private InverseModelRef<AccountModel, FacebookAccessModel> accountModelRef = new InverseModelRef<AccountModel, FacebookAccessModel>(AccountModel.class, "facebookAccessModelRef", this);
+	// private ModelRef<inquiryDataModel>
 
 	/**
 	 * Returns the key.
@@ -80,7 +77,7 @@ public class FacebookAccessModel implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		FacebookAccessModel other = (FacebookAccessModel) obj;
+		InquiryDataPackModel other = (InquiryDataPackModel) obj;
 		if (key == null) {
 			if (other.key != null) {
 				return false;
@@ -90,9 +87,4 @@ public class FacebookAccessModel implements Serializable {
 		}
 		return true;
 	}
-
-	public InverseModelRef<AccountModel, FacebookAccessModel> getAccountModelRef() {
-		return accountModelRef;
-	}
-
 }

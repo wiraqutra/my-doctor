@@ -1,13 +1,13 @@
-package com.appspot.mydoctor.model;
+package com.appspot.mydoctor.model.base;
 
 import org.slim3.tester.AppEngineTestCase;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-public class FacebookAccessModelTest extends AppEngineTestCase {
+public class OAuthAccessModelTest extends AppEngineTestCase {
 
-    private FacebookAccessModel model = new FacebookAccessModel();
+    private OAuthAccessModel model = new OAuthAccessModel();
 
     @Test
     public void test() throws Exception {
