@@ -13,8 +13,8 @@
 <p>新規登録</p>
 
 <form name="registerForm" method="post" action="/pc/register">
-	<p><input type="text" name="email" value="${f:h(email)}" class="${f:errorClass('email','err')}"/>${f:h(errors.email)}</p>
-	<p><input type="text" name="nickName" value="${f:h(nickName)}" class="${f:errorClass('nickName','err')}"/>${f:h(errors.nickName)}</p>
+	<p>EMAIL<input type="text" name="email" value="${f:h(email)}" class="${f:errorClass('email','err')}"/>${f:h(errors.email)}</p>
+	<p>ニックネーム<input type="text" name="nickName" value="${f:h(nickName)}" class="${f:errorClass('nickName','err')}"/>${f:h(errors.nickName)}</p>
 	<p><input type="submit" value="送信"/></p>
 	<input type="hidden" name="cmd" value="submit"/>
 </form>
